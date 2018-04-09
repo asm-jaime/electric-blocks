@@ -23,7 +23,7 @@ typedef struct park {
                    (void (*)(Uint32))Exec, \
 }
 
-void Init(void);
+void Init(park *v);
 void Exec(park *v);
 
 #endif // __PARK_H__
