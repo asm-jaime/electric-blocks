@@ -1,6 +1,6 @@
 #include "rampgen.h"
 
-void rampgen_calc(RAMPGEN *v) {
+void Exec(rampgen *v) {
   // Compute the angle rate
   v->Angle += _IQmpy(v->StepAngleMax, v->Freq);
 

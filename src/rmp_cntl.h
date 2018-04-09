@@ -5,7 +5,7 @@
 #include "iqmathlib.h"
 #include "dmctype.h"
 
-typedef struct rmpcntl {
+typedef struct rmp_cntl {
          _iq    TargetValue;    // Input: Target input (pu)
          Uint32 RampDelayMax;   // Parameter: Max delay (Q0) independently with global Q
          _iq    RampLowLimit;   // Parameter: Minimum limit (pu)
@@ -15,9 +15,9 @@ typedef struct rmpcntl {
          Uint32 EqualFlag;      // Output: Flag output (Q0) - independently with global Q
          void (*init)();        // Pointer to init function
          void (*exec)();        // Pointer to calculation function
-        } rmpcntl;
+        } rmp_cntl;
 
-#define rmpcntl_def { 0, \
+#define rmp_cntl_def { 0, \
                       40, \
                       _IQ(-1), \
                       _IQ(1), \
@@ -28,7 +28,7 @@ typedef struct rmpcntl {
                      (void (*)(Uint32))Exec, \
 }
 
-void Init(rmpcntl *v);
-void Exec(rmpcntl *v);
+void Init(rmp_cntl *v);
+void Exec(rmp_cntl *v);
 
 #endif // __RMP_CNTL_H__

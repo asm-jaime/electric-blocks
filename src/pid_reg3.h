@@ -1,12 +1,12 @@
-#ifndef __PIDREG3_H__
-#define __PIDREG3_H__
+#ifndef __PID_REG3_H__
+#define __PID_REG3_H__
 
 // ========== anti-widup pid regulator
 
 #include "iqmathlib.h"
 #include "dmctype.h"
 
-typedef struct pidreg3 {
+typedef struct pid_reg3 {
           _iq  Ref;       // Input: Reference input
           _iq  Fdb;       // Input: Feedback input
           _iq  Err;       // Variable: Error
@@ -25,10 +25,10 @@ typedef struct pidreg3 {
           _iq  Up1;       // History: Previous proportional output
           void (*init)(); // Pointer to init function
           void (*exec)(); // Pointer to calculation function
-         } pidreg3;
+         } pid_reg3;
 
 
-#define pidreg3_def { 0, \
+#define pid_reg3_def { 0, \
                       0, \
                       0, \
                       _IQ(1.3), \
@@ -48,7 +48,7 @@ typedef struct pidreg3 {
                       (void (*)(Uint32))Exec, \
 }
 
-void Init(pidreg3 *v);
-void Exec(pidreg3 *v);
+void Init(pid_reg3 *v);
+void Exec(pid_reg3 *v);
 
-#endif // __PIDREG3_H__
+#endif // __PID_REG3_H__

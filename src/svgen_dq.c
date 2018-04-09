@@ -1,6 +1,6 @@
 #include "svgen_dq.h"
 
-void Exec(svgendq *v) {
+void Exec(svgen_dq *v) {
   _iq Va,Vb,Vc,t1,t2;
   Uint32 Sector = 0;  // Sector is treated as Q0 - independently with global Q
 
@@ -63,7 +63,8 @@ void Exec(svgendq *v) {
      v->Tb = v->Ta+t2;                             // tbon = taon+t2
   }
 
-  // Convert the unsigned GLOBAL_Q format (ranged (0,1)) -> signed GLOBAL_Q format (ranged (-1,1))
+  // Convert the unsigned GLOBAL_Q format (ranged (0,1)) ->
+  // signed GLOBAL_Q format (ranged (-1,1))
   v->Ta = _IQmpy(_IQ(2.0), (v->Ta-_IQ(0.5)));
   v->Tb = _IQmpy(_IQ(2.0), (v->Tb-_IQ(0.5)));
   v->Tc = _IQmpy(_IQ(2.0), (v->Tc-_IQ(0.5)));

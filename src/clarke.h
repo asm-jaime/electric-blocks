@@ -21,7 +21,7 @@ typedef struct clarke {
                      (void (*)(Uint32))Exec, \
 }
 
-void Init(void);
+void Init(clarke *v);
 void Exec(clarke *v);
 
 #endif // __CLARKE_H__

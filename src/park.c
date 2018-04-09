@@ -1,6 +1,6 @@
 #include "park.h"
 
-void Init(void) {
+void Init(park *v) {
 }
 
 void Exec(park *v) {

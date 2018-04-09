@@ -1,11 +1,10 @@
 #ifndef __SVGEN_DQ_H__
 #define __SVGEN_DQ_H__
 
-
 #include "iqmathlib.h"
 #include "dmctype.h"
 
-typedef struct svgendq {
+typedef struct svgen_dq {
           _iq  Ualpha;    // Input: reference alpha-axis phase voltage
           _iq  Ubeta;     // Input: reference beta-axis phase voltage
           _iq  Ta;        // Output: reference phase-a switching function
@@ -13,9 +12,9 @@ typedef struct svgendq {
           _iq  Tc;        // Output: reference phase-c switching function
           void (*init)(); // Pointer to init function
           void (*exec)(); // Pointer to calculation function
-        } svgendq;
+        } svgen_dq;
 
-#define svgendq_def { 0, \
+#define svgen_dq_def { 0, \
                       0, \
                       0, \
                       0, \
@@ -24,7 +23,7 @@ typedef struct svgendq {
                       (void (*)(Uint32))Exec, \
 }
 
-void Exec(ipark *v);
-void Init(ipark *v);
+void Exec(svgen_dq *v);
+void Init(svgen_dq *v);
 
 #endif // __SVGEN_DQ_H__
