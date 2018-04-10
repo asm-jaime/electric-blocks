@@ -1,6 +1,6 @@
 #include "rmp_cntl.h"
 
-void Exec(rmp_cntl *v) {
+void exec_rmp_cntl(rmp_cntl *v) {
   _iq tmp;
   tmp = v->TargetValue - v->SetpointValue;
 

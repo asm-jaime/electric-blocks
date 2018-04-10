@@ -1,6 +1,6 @@
 #include "ipark.h"
 
-void Exec(ipark *v) {
+void exec_ipark(ipark *v) {
   _iq sina = _IQsinPU(v->Angle);
   _iq cosa = _IQcosPU(v->Angle);
 

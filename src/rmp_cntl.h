@@ -2,7 +2,7 @@
 #define __RMP_CNTL_H__
 
 
-#include "iqmathlib.h"
+#include "IQMathLib.h"
 #include "dmctype.h"
 
 typedef struct rmp_cntl {
@@ -13,7 +13,6 @@ typedef struct rmp_cntl {
          Uint32 RampDelayCount; // Variable: Increm delay (Q0) independently with global Q
          _iq    SetpointValue;  // Output: Target output (pu)
          Uint32 EqualFlag;      // Output: Flag output (Q0) - independently with global Q
-         void (*init)();        // Pointer to init function
          void (*exec)();        // Pointer to calculation function
         } rmp_cntl;
 
@@ -24,11 +23,9 @@ typedef struct rmp_cntl {
                       0, \
                       0, \
                       0, \
-                     (void (*)(Uint32))Init, \
-                     (void (*)(Uint32))Exec, \
+                     (void (*)(Uint32))exec_rmp_cntl, \
 }
 
-void Init(rmp_cntl *v);
-void Exec(rmp_cntl *v);
+void exec_rmp_cntl(rmp_cntl *v);
 
 #endif // __RMP_CNTL_H__

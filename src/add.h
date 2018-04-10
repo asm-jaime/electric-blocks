@@ -1,7 +1,7 @@
 #ifndef ADD_H
 #define ADD_H
 
-#include "iqmathlib.h"
+#include "IQMathLib.h"
 #include "dmctype.h"
 
 typedef struct add {

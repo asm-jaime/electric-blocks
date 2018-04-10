@@ -1,6 +1,6 @@
 #include "speed_meas_qep.h"
 
-void Exec(speed_meas_qep *v) {
+void exec_speed_meas_qep(speed_meas_qep *v) {
    _iq Tmp1;
 
   // Differentiator

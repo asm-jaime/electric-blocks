@@ -2,7 +2,7 @@
 #define __IPARK_H__
 
 
-#include "iqmathlib.h"
+#include "IQMathLib.h"
 #include "dmctype.h"
 
 typedef struct ipark {
@@ -11,7 +11,6 @@ typedef struct ipark {
           _iq  Angle;     // Input: rotating angle (pu)
           _iq  Ds;        // Input: rotating d-axis stator variable
           _iq  Qs;        // Input: rotating q-axis stator variable
-          void (*init)(); // Pointer to init function
           void (*exec)(); // Pointer to calculation function
          } ipark;
 
@@ -20,11 +19,9 @@ typedef struct ipark {
                     0, \
                     0, \
                     0, \
-                    (void (*)(Uint32))Init, \
-                    (void (*)(Uint32))Exec, \
+                    (void (*)(Uint32))exec_ipark, \
 }
 
-void Exec(ipark *v);
-void Init(ipark *v);
+void exec_ipark(ipark *v);
 
 #endif // __IPARK_H__

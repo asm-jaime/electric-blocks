@@ -3,7 +3,7 @@
 #ifndef __SPEED_MEAS_QEP_H__
 #define __SPEED_MEAS_QEP_H__
 
-#include "iqmathlib.h"
+#include "IQMathLib.h"
 #include "dmctype.h"
 
 typedef struct speed_meas_qep {
@@ -16,8 +16,6 @@ typedef struct speed_meas_qep {
        _iq K2;              // Parameter: Constant for low-pass filter (pu)
        _iq K3;              // Parameter: Constant for low-pass filter (pu)
        int32 SpeedRpm;      // Output : Speed in rpm  (Q0) - independently with global Q
-       void (*calc)();      // Pointer to the calulation function
-       void (*init)();      // Pointer to init function
        void (*exec)();      // Pointer to calculation function
       } speed_meas_qep;     // Data type created
 
@@ -30,11 +28,9 @@ typedef struct speed_meas_qep {
                              0, \
                              0, \
                              0, \
-                            (void (*)(Uint32))Init, \
-                            (void (*)(Uint32))Exec, \
+                            (void (*)(Uint32))exec_speed_meas_qep, \
 }
 
-void Init(speed_meas_qep *v);
-void Exec(speed_meas_qep *v);
+void exec_speed_meas_qep(speed_meas_qep *v);
 
 #endif // __SPEED_MEAS_QEP_H__

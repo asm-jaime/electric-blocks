@@ -1,9 +1,6 @@
 #include "park.h"
 
-void Init(park *v) {
-}
-
-void Exec(park *v) {
+void exec_park(park *v) {
   _iq cosa = _IQcosPU(v->Angle);
   _iq sina = _IQsinPU(v->Angle);
 

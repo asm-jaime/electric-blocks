@@ -1,7 +1,7 @@
 #ifndef __SVGEN_DQ_H__
 #define __SVGEN_DQ_H__
 
-#include "iqmathlib.h"
+#include "IQMathLib.h"
 #include "dmctype.h"
 
 typedef struct svgen_dq {
@@ -10,7 +10,6 @@ typedef struct svgen_dq {
           _iq  Ta;        // Output: reference phase-a switching function
           _iq  Tb;        // Output: reference phase-b switching function
           _iq  Tc;        // Output: reference phase-c switching function
-          void (*init)(); // Pointer to init function
           void (*exec)(); // Pointer to calculation function
         } svgen_dq;
 
@@ -19,11 +18,9 @@ typedef struct svgen_dq {
                       0, \
                       0, \
                       0, \
-                      (void (*)(Uint32))Init, \
-                      (void (*)(Uint32))Exec, \
+                      (void (*)(Uint32))exec_svgen_dq, \
 }
 
-void Exec(svgen_dq *v);
-void Init(svgen_dq *v);
+void exec_svgen_dq(svgen_dq *v);
 
 #endif // __SVGEN_DQ_H__

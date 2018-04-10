@@ -1,7 +1,7 @@
 #ifndef __CLARKE_H__
 #define __CLARKE_H__
 
-#include "iqmathlib.h"
+#include "IQMathLib.h"
 #include "dmctype.h"
 
 typedef struct clarke {
@@ -9,7 +9,6 @@ typedef struct clarke {
           _iq Bs;        // Input: phase-b stator variable
           _iq Alpha;     // Output: stationary d-axis stator variable
           _iq Beta;      // Output: stationary q-axis stator variable
-          void (*init)();// Pointer to init function
           void (*exec)();// Pointer to calculation function
          } clarke;
 
@@ -17,11 +16,9 @@ typedef struct clarke {
                      0, \
                      0, \
                      0, \
-                     (void (*)(Uint32))Init, \
-                     (void (*)(Uint32))Exec, \
+                     (void (*)(Uint32))exec_clarke, \
 }
 
-void Init(clarke *v);
-void Exec(clarke *v);
+void exec_clarke(clarke *v);
 
 #endif // __CLARKE_H__

@@ -2,7 +2,7 @@
 #define __RAMPGEN_H__
 
 
-#include "iqmathlib.h"
+#include "IQMathLib.h"
 #include "dmctype.h"
 
 typedef struct rampgen {
@@ -12,7 +12,6 @@ typedef struct rampgen {
             _iq  Gain;          // Input: Ramp gain (pu)
             _iq  Out;           // Output: Ramp signal (pu)
             _iq  Offset;        // Input: Ramp offset (pu)
-            void (*init)();     // Pointer to init function
             void (*exec)();     // Pointer to calculation function
          } rampgen;
 
@@ -22,11 +21,9 @@ typedef struct rampgen {
                       _IQ(1), \
                       0, \
                       _IQ(1), \
-                      (void (*)(Uint32))Init, \
-                      (void (*)(Uint32))Exec, \
+                      (void (*)(Uint32))exec_rampgen, \
 }
 
-void Init(rampgen *v);
-void Exec(rampgen *v);
+void exec_rampgen(rampgen *v);
 
 #endif // __RAMPGEN_H__

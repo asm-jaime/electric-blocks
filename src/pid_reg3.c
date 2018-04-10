@@ -1,9 +1,6 @@
 #include "pid_reg3.h"
 
-void Init(pid_reg3 *v) {
-}
-
-void Exec(pid_reg3 *v) {
+void exec_pid_reg3(pid_reg3 *v) {
   // Compute the error
   v->Err = v->Ref - v->Fdb;
 

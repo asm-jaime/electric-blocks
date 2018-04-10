@@ -3,7 +3,7 @@
 
 // ========== anti-widup pid regulator
 
-#include "iqmathlib.h"
+#include "IQMathLib.h"
 #include "dmctype.h"
 
 typedef struct pid_reg3 {
@@ -23,7 +23,6 @@ typedef struct pid_reg3 {
           _iq  Kc;        // Parameter: Integral correction gain
           _iq  Kd;        // Parameter: Derivative gain
           _iq  Up1;       // History: Previous proportional output
-          void (*init)(); // Pointer to init function
           void (*exec)(); // Pointer to calculation function
          } pid_reg3;
 
@@ -44,11 +43,9 @@ typedef struct pid_reg3 {
                       _IQ(0.5), \
                       _IQ(1.05), \
                       0, \
-                      (void (*)(Uint32))Init, \
-                      (void (*)(Uint32))Exec, \
+                      (void (*)(Uint32))exec_pid_reg3, \
 }
 
-void Init(pid_reg3 *v);
-void Exec(pid_reg3 *v);
+void exec_pid_reg3(pid_reg3 *v);
 
 #endif // __PID_REG3_H__

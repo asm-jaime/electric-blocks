@@ -1,6 +1,6 @@
 #include "svgen_dq.h"
 
-void Exec(svgen_dq *v) {
+void exec_svgen_dq(svgen_dq *v) {
   _iq Va,Vb,Vc,t1,t2;
   Uint32 Sector = 0;  // Sector is treated as Q0 - independently with global Q
 

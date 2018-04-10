@@ -1,7 +1,7 @@
 #ifndef __PARK_H__
 #define __PARK_H__
 
-#include "iqmathlib.h"
+#include "IQMathLib.h"
 #include "dmctype.h"
 
 typedef struct park {
@@ -10,7 +10,6 @@ typedef struct park {
           _iq  Angle;     // Input: rotating angle (pu)
           _iq  Ds;        // Output: rotating d-axis stator variable
           _iq  Qs;        // Output: rotating q-axis stator variable
-          void (*init)(); // Pointer to init function
           void (*exec)(); // Pointer to calculation function
          } park;
 
@@ -19,11 +18,9 @@ typedef struct park {
                    0, \
                    0, \
                    0, \
-                   (void (*)(Uint32))Init, \
-                   (void (*)(Uint32))Exec, \
+                   (void (*)(Uint32))exec_park, \
 }
 
-void Init(park *v);
-void Exec(park *v);
+void exec_park(park *v);
 
 #endif // __PARK_H__
