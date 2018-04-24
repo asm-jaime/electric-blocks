@@ -11,4 +11,4 @@ C lib of electrical blocks, tested and destined to use for a TI 28x dsp (mostly 
 * `cd electric-blocks`
 * `npm install`
 * `npm run build`
-* `npm star`
+* `npm test`
