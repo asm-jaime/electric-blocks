@@ -30,7 +30,7 @@
     - +:test/**
     - -:test/support
   :source:
-    - src/**
+    - blocks/**
   :support:
     - test/support
 

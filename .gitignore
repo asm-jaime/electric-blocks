@@ -55,3 +55,7 @@ dkms.conf
 vendor/
 build/
 z_buff/
+
+/node_modules/*
+node_modules/*
+.tern-project
