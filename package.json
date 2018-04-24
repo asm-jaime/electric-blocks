@@ -4,7 +4,9 @@
   "description": "",
   "main": "blocks.js",
   "scripts": {
+    "build": "mkdir -p dir && gcc -shared -fpic blocks/clarke.c blocks/wrapper.c -o build/blocks.so",
     "start": "node blocks.js"
+
   },
   "author": "asm-jaime,caffeine",
   "license": "",

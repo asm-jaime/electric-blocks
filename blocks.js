@@ -14,7 +14,7 @@ clarke.defineProperty('exec', ffi.Function('void', [ref.refType(clarke)]));
 
 const clarkePtr = ref.refType(clarke);
 
-const blocks = ffi.Library('./blocks/blocks.so', {
+const blocks = ffi.Library('./build/blocks.so', {
   'init_clarke': [ clarkePtr, [ ] ],
   'free_block': ['void', ['void *']]
 })
