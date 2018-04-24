@@ -1,8 +1,5 @@
 #include "add.h"
 
-void Init(void) {
-}
-
-void Exec(add *v) {
-  v->Out = v->In1 + v->In2;
+void exec_add(add *v) {
+  v->Out = v->A + v->B;
 }

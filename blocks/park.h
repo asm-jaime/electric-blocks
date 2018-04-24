@@ -1,17 +1,17 @@
-#ifndef __PARK_H__
-#define __PARK_H__
+#ifndef PARK_H_
+#define PARK_H_
 
 #include "IQMathLib.h"
 #include "dmctype.h"
 
 typedef struct park {
-          _iq  Alpha;     // Input: stationary d-axis stator variable
-          _iq  Beta;      // Input: stationary q-axis stator variable
-          _iq  Angle;     // Input: rotating angle (pu)
-          _iq  Ds;        // Output: rotating d-axis stator variable
-          _iq  Qs;        // Output: rotating q-axis stator variable
-          void (*exec)(); // Pointer to calculation function
-         } park;
+  _iq Alpha;      // Input: stationary d-axis stator variable
+  _iq Beta;       // Input: stationary q-axis stator variable
+  _iq Angle;      // Input: rotating angle (pu)
+  _iq Ds;         // Output: rotating d-axis stator variable
+  _iq Qs;         // Output: rotating q-axis stator variable
+  void (*exec)(); // Pointer to calculation function
+} park;
 
 #define park_def { 0, \
                    0, \
@@ -23,4 +23,4 @@ typedef struct park {
 
 void exec_park(park *v);
 
-#endif // __PARK_H__
+#endif // PARK_H_

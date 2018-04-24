@@ -1,5 +1,5 @@
-#ifndef __DMCTYPE_H__
-#define __DMCTYPE_H__
+#ifndef DMCTYPE_H_
+#define DMCTYPE_H_
 
 // For Portability, User Is Recommended To Use Following Data Type Size
 // Definitions For 16-bit and 32-Bit Signed/Unsigned Integers:
@@ -11,5 +11,5 @@ typedef unsigned long Uint32;
 typedef float         float32;
 typedef long double   float64;
 
-#endif  // __DMCTYPE_H__
+#endif // DMCTYPE_H_
 

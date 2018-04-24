@@ -1,8 +1,7 @@
 #include "rmp_cntl.h"
 
 void exec_rmp_cntl(rmp_cntl *v) {
-  _iq tmp;
-  tmp = v->TargetValue - v->SetpointValue;
+  _iq tmp = v->TargetValue - v->SetpointValue;
 
   if (_IQabs(tmp) > _IQ(0.0000305)) {
     v->RampDelayCount += 1;

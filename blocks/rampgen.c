@@ -21,4 +21,3 @@ void exec_rampgen(rampgen *v) {
     v->Out += _IQ(1.0);
   }
 }
-

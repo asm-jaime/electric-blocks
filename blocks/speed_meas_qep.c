@@ -3,8 +3,7 @@
 void exec_speed_meas_qep(speed_meas_qep *v) {
    _iq Tmp1;
 
-  // Differentiator
-  // Synchronous speed computation
+  // Diff synchronous speed computation
   if ((v->ElecTheta < _IQ(0.9))&(v->ElecTheta > _IQ(0.1))) {
       Tmp1 = _IQmpy(v->K1,(v->ElecTheta - v->OldElecTheta));
   } else {
