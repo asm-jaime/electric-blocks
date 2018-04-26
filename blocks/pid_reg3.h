@@ -17,12 +17,12 @@ typedef struct pid_reg3 {
   _iq OutPreSat;  // Variable: Pre-saturated output
   _iq OutMax;     // Parameter: Maximum output
   _iq OutMin;     // Parameter: Minimum output
-  _iq Out;        // Output: PID output
   _iq SatErr;     // Variable: Saturated difference
   _iq Ki;         // Parameter: Integral gain
   _iq Kc;         // Parameter: Integral correction gain
   _iq Kd;         // Parameter: Derivative gain
   _iq Up1;        // History: Previous proportional output
+  _iq Out;        // Output: PID output
   void (*exec)(); // Pointer to calculation function
 } pid_reg3;
 

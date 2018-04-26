@@ -14,11 +14,11 @@ typedef struct svgen_dq {
 } svgen_dq;
 
 #define svgen_dq_def { 0, \
-                      0, \
-                      0, \
-                      0, \
-                      0, \
-                      (void (*)(Uint32))exec_svgen_dq, \
+                       0, \
+                       0, \
+                       0, \
+                       0, \
+                       (void (*)(Uint32))exec_svgen_dq, \
 }
 
 void exec_svgen_dq(svgen_dq *v);

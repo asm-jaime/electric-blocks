@@ -20,8 +20,7 @@ void exec_rmp_cntl(rmp_cntl *v) {
        v->RampDelayCount = 0;
       }
     }
-  }
-  else {
+  } else {
     v->EqualFlag = 0x7FFFFFFF;
   }
 }

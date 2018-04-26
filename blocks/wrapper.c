@@ -98,12 +98,12 @@ EXPORT rampgen *init_rampgen(void){
 
 EXPORT rmp_cntl *init_rmp_cntl(void){
   rmp_cntl *p_rmp_cntl = (rmp_cntl *)malloc(sizeof(rmp_cntl));
-  p_rmp_cntl->TargetValue = 0;
+  p_rmp_cntl->TargetValue = 0.0;
   p_rmp_cntl->RampDelayMax = 40;
-  p_rmp_cntl->RampLowLimit = -1;
-  p_rmp_cntl->RampHighLimit = 1;
+  p_rmp_cntl->RampLowLimit = -1.0;
+  p_rmp_cntl->RampHighLimit = 1.0;
   p_rmp_cntl->RampDelayCount = 0;
-  p_rmp_cntl->SetpointValue = 0;
+  p_rmp_cntl->SetpointValue = 0.0;
   p_rmp_cntl->EqualFlag = 0;
 
   p_rmp_cntl->exec = exec_rmp_cntl;
