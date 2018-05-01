@@ -1,13 +1,15 @@
 #include "svgen_dq.h"
 
+// 0.8660254 = sqrt(3)/2
+
 void exec_svgen_dq(svgen_dq *v) {
   _iq Va,Vb,Vc,t1,t2;
   Uint32 Sector = 0;  // Sector is treated as Q0 - independently with global Q
 
   // Inverse clarke transformation
   Va = v->Ubeta;
-  Vb = _IQmpy(_IQ(-0.5),v->Ubeta) + _IQmpy(_IQ(0.8660254),v->Ualpha);  // 0.8660254 = sqrt(3)/2
-  Vc = _IQmpy(_IQ(-0.5),v->Ubeta) - _IQmpy(_IQ(0.8660254),v->Ualpha);  // 0.8660254 = sqrt(3)/2
+  Vb = _IQmpy(_IQ(-0.5),v->Ubeta) + _IQmpy(_IQ(0.8660254),v->Ualpha);
+  Vc = _IQmpy(_IQ(-0.5),v->Ubeta) - _IQmpy(_IQ(0.8660254),v->Ualpha);
 
   // 60 degree Sector determination
   if (Va>_IQ(0)) Sector = 1;
@@ -15,9 +17,9 @@ void exec_svgen_dq(svgen_dq *v) {
   if (Vc>_IQ(0)) Sector = Sector + 4;
 
   // X,Y,Z (Va,Vb,Vc) calculations
-  Va = v->Ubeta;                                                       // X = Va
-  Vb = _IQmpy(_IQ(0.5),v->Ubeta) + _IQmpy(_IQ(0.8660254),v->Ualpha);   // Y = Vb
-  Vc = _IQmpy(_IQ(0.5),v->Ubeta) - _IQmpy(_IQ(0.8660254),v->Ualpha);   // Z = Vc
+  Va = v->Ubeta;                                                      // X = Va
+  Vb = _IQmpy(_IQ(0.5),v->Ubeta) + _IQmpy(_IQ(0.8660254),v->Ualpha);  // Y = Vb
+  Vc = _IQmpy(_IQ(0.5),v->Ubeta) - _IQmpy(_IQ(0.8660254),v->Ualpha);  // Z = Vc
 
   if (Sector == 0) { // Sector 0: this is special case for (Ualpha,Ubeta) = (0,0)
      v->Ta = _IQ(0.5);

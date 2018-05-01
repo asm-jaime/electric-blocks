@@ -12,7 +12,7 @@ const clarke = struct({
   'As': 'float',
   'Bs': 'float',
   'Alpha': 'float',
-  'Beta': 'float'
+  'Beta': 'float',
 });
 const clarkePtr = ref.refType(clarke);
 clarke.defineProperty('exec', ffi.Function('void', [clarkePtr]));
@@ -22,7 +22,7 @@ const park = struct({
   'Beta': 'float',
   'Angle': 'float',
   'Ds': 'float',
-  'Qs': 'float'
+  'Qs': 'float',
 });
 const parkPtr = ref.refType(park);
 park.defineProperty('exec', ffi.Function('void', [parkPtr]));
@@ -32,7 +32,7 @@ const ipark = struct({
   'Beta': 'float',
   'Angle': 'float',
   'Ds': 'float',
-  'Qs': 'float'
+  'Qs': 'float',
 });
 const iparkPtr = ref.refType(ipark);
 ipark.defineProperty('exec', ffi.Function('void', [iparkPtr]));
@@ -65,7 +65,7 @@ const rmp_cntl = struct({
   'RampHighLimit': 'float',
   'RampDelayCount': 'ulong',
   'SetpointValue': 'float',
-  'EqualFlag': 'ulong'
+  'EqualFlag': 'ulong',
 });
 const rmp_cntlPtr = ref.refType(rmp_cntl);
 rmp_cntl.defineProperty('exec', ffi.Function('void', [rmp_cntlPtr]));
@@ -75,8 +75,8 @@ const rampgen = struct({
   'StepAngleMax': 'float',
   'Angle': 'float',
   'Gain': 'float',
+  'Offset': 'float',
   'Out': 'float',
-  'Offset': 'float'
 });
 const rampgenPtr = ref.refType(rampgen);
 rampgen.defineProperty('exec', ffi.Function('void', [rampgenPtr]));
@@ -100,16 +100,32 @@ const svgen_dq = struct({
   'Ubeta': 'float',
   'Ta': 'float',
   'Tb': 'float',
-  'Tc': 'float'
+  'Tc': 'float',
 });
 const svgen_dqPtr = ref.refType(svgen_dq);
 svgen_dq.defineProperty('exec', ffi.Function('void', [svgen_dqPtr]));
 
-// ========== libs
+const gen_sin = struct({
+  'Freq': 'float',
+  'StepAngleMax': 'float',
+  'Angle': 'float',
+  'Ampl': 'float',
+  'Offset': 'float',
+  'Out': 'float',
+});
+const gen_sinPtr = ref.refType(gen_sin);
+gen_sin.defineProperty('exec', ffi.Function('void', [gen_sinPtr]));
 
+// ========== libs
 module.exports.blocks = ffi.Library(path.join(__dirname, 'build/blocks.so'), {
   'init_clarke': [ clarkePtr, [ ] ],
+  'init_park': [ parkPtr, [ ] ],
+  'init_ipark': [ iparkPtr, [ ] ],
+  'init_pid_reg3': [ pid_reg3Ptr, [ ] ],
   'init_rampgen': [ rampgenPtr, [ ] ],
   'init_rmp_cntl': [ rmp_cntlPtr, [ ] ],
+  'init_speed_meas_qep': [ speed_meas_qepPtr, [ ] ],
+  'init_svgen_dq': [ svgen_dqPtr, [ ] ],
+  'init_gen_sin': [ gen_sinPtr, [ ] ],
   'free_block': ['void', ['void *']]
 });

@@ -10,6 +10,7 @@
 #include "rmp_cntl.h"
 #include "speed_meas_qep.h"
 #include "svgen_dq.h"
+#include "gen_sin.h"
 
 #if defined(WIN32) || defined(_WIN32)
 #define EXPORT __declspec(dllexport)
@@ -89,8 +90,8 @@ EXPORT rampgen *init_rampgen(void){
   p_rampgen->StepAngleMax = 0;
   p_rampgen->Angle = 0;
   p_rampgen->Gain = 1;
-  p_rampgen->Out = 0;
   p_rampgen->Offset = 1;
+  p_rampgen->Out = 0;
 
   p_rampgen->exec = exec_rampgen;
   return p_rampgen;
@@ -136,6 +137,19 @@ EXPORT svgen_dq *init_svgen_dq(void){
 
   p_svgen_dq->exec = exec_svgen_dq;
   return p_svgen_dq;
+}
+
+EXPORT gen_sin *init_gen_sin(void){
+  gen_sin *p_gen_sin = (gen_sin *)malloc(sizeof(gen_sin));
+  p_gen_sin->Freq = 0;
+  p_gen_sin->StepAngleMax = 0;
+  p_gen_sin->Angle = 0;
+  p_gen_sin->Ampl = 1;
+  p_gen_sin->Offset = 0;
+  p_gen_sin->Out = 0;
+
+  p_gen_sin->exec = exec_gen_sin;
+  return p_gen_sin;
 }
 
 EXPORT void free_block(void *block){

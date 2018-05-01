@@ -1,29 +1,29 @@
-#ifndef RAMPGEN_H_
-#define RAMPGEN_H_
+#ifndef GEN_SIN_H_
+#define GEN_SIN_H_
 
 
 #include "IQMathLib.h"
 #include "dmctype.h"
 
-typedef struct rampgen {
+typedef struct gen_sin {
   _iq Freq;         // Input: Ramp frequency (pu)
   _iq StepAngleMax; // Parameter: Maximum step angle (pu)
   _iq Angle;        // Variable: Step angle (pu)
-  _iq Gain;         // Input: Ramp gain (pu)
-  _iq Offset;       // Input: Ramp offset (pu)
-  _iq Out;          // Output: Ramp signal (pu)
+  _iq Ampl;         // Input: Amplitude sin (pu)
+  _iq Offset;       // Input: y-axis offset (pu)
+  _iq Out;          // Output: sine signal (pu)
   void (*exec)();   // Pointer to calculation function
-} rampgen;
+} gen_sin;
 
-#define rampgen_def { 0, \
+#define gen_sin_def { 0, \
                       0, \
                       0, \
                       _IQ(1), \
-                      _IQ(1), \
                       0, \
-                      (void (*)(Uint32))exec_rampgen, \
+                      0, \
+                      (void (*)(Uint32))exec_gen_sin, \
 }
 
-void exec_rampgen(rampgen *v);
+void exec_gen_sin(gen_sin *v);
 
-#endif // RAMPGEN_H_
+#endif // GEN_SIN_H_

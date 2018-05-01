@@ -38,12 +38,13 @@ describe('blocks', function() {
     logger({ data: rc_data(), dest: __dirname, type: 'line' });
   });
 
-  it('exec rampgen', function() {
+  it.skip('exec rampgen', function() {
     function rg_data() {
       const gen_data = [];
       const r_rampgen = blocks.init_rampgen().deref();
       r_rampgen.Freq = 0.5;
       r_rampgen.StepAngleMax = 0.01;
+      console.log(r_rampgen);
 
       for(let i = 0; i < 2000; ++i){
         r_rampgen.exec(r_rampgen.ref());
@@ -56,5 +57,90 @@ describe('blocks', function() {
       ]
     }
     logger({ data: rg_data(), dest: __dirname, type: 'line' });
+  });
+
+  it.skip('exec gen_sin', function() {
+    function sin_data() {
+      const sin1_data = [];
+      const sin2_data = [];
+
+      const r_gen_sin1 = blocks.init_gen_sin().deref();
+      r_gen_sin1.Freq = 0.5;
+      r_gen_sin1.Angle = 0;
+      r_gen_sin1.Ampl = 1;
+      r_gen_sin1.StepAngleMax = 0.01;
+
+      const r_gen_sin2 = blocks.init_gen_sin().deref();
+      r_gen_sin2.Freq = 0.5;
+      r_gen_sin2.Angle = 0.25;
+      r_gen_sin2.Ampl = 1;
+      r_gen_sin2.StepAngleMax = 0.01;
+
+      //console.log(r_gen_sin1, r_gen_sin2);
+
+      for(let i = 0; i < 500; ++i){
+        r_gen_sin1.exec(r_gen_sin1.ref());
+        sin1_data.push([i, r_gen_sin1.Out]);
+
+        r_gen_sin2.exec(r_gen_sin2.ref());
+        sin2_data.push([i, r_gen_sin2.Out]);
+      }
+      blocks.free_block(r_gen_sin1.ref());
+      blocks.free_block(r_gen_sin2.ref());
+
+      return [
+        { data: sin1_data, label: 'sin1' },
+        { data: sin2_data, label: 'sin2' },
+      ]
+    }
+    logger({ data: sin_data(), dest: __dirname, type: 'line' });
+  });
+
+  it('exec svgen_dq', function() {
+    function svgen_data() {
+      const Ta = [];
+      const Tb = [];
+      const Tc = [];
+
+      const r_gen_sin1 = blocks.init_gen_sin().deref();
+      r_gen_sin1.Freq = 0.5;
+      r_gen_sin1.Angle = 0;
+      r_gen_sin1.Ampl = 1;
+      r_gen_sin1.StepAngleMax = 0.01;
+
+      const r_gen_sin2 = blocks.init_gen_sin().deref();
+      r_gen_sin2.Freq = 0.5;
+      r_gen_sin2.Angle = 0.25;
+      r_gen_sin2.Ampl = 1;
+      r_gen_sin2.StepAngleMax = 0.01;
+
+      const r_svgen_dq = blocks.init_svgen_dq().deref();
+
+      console.log(r_svgen_dq);
+
+      for(let i = 0; i < 500; ++i){
+        r_gen_sin1.exec(r_gen_sin1.ref());
+        r_gen_sin2.exec(r_gen_sin2.ref());
+
+        r_svgen_dq.Ualpha = r_gen_sin1.Out;
+        r_svgen_dq.Ubeta = r_gen_sin2.Out;
+        r_svgen_dq.exec(r_svgen_dq.ref());
+
+        Ta.push([i, r_svgen_dq.Ta]);
+        Tb.push([i, r_svgen_dq.Tb]);
+        Tc.push([i, r_svgen_dq.Tc]);
+      }
+
+      blocks.free_block(r_gen_sin1.ref());
+      blocks.free_block(r_gen_sin2.ref());
+      blocks.free_block(r_svgen_dq.ref());
+
+      return [
+        { data: Ta, label: 'Ta' },
+        { data: Tb, label: 'Tb' },
+        { data: Tc, label: 'Tc' },
+      ]
+    }
+    logger({ data: svgen_data(), dest: __dirname, type: 'line' });
   });
 });
